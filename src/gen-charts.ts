@@ -1027,17 +1027,18 @@ function makeChartType (chartType: CHART_NAME, data: IOptsChartData[], opts: ICh
 				if (obj.styles) {
 					obj.styles.forEach((style: any, idx) => {
 						if (style !== undefined && style !== null) {
+							const color = 'color' in style ? style.color : seriesColor
 							const borderStyle = 'border' in style ? style.border : {}
 							if (chartType === CHART_TYPE.BAR) {
 								strXml += '<c:dPt>'
 								strXml += `    <c:idx idx="${idx}"/>`
 								strXml += '    <c:spPr>'
 								strXml += '        <a:solidFill>'
-								strXml += `            ${createColorElement(seriesColor)}`
+								strXml += `            ${createColorElement(color)}`
 								strXml += '        </a:solidFill>'
 								strXml += `        <a:ln w="${valToPts(borderStyle && 'pt' in borderStyle ? borderStyle.pt : 1)}" cap="flat">`
 								strXml += '            <a:solidFill>'
-								strXml += `                ${createColorElement(borderStyle && 'color' in borderStyle ? borderStyle.color : seriesColor)}`
+								strXml += `                ${createColorElement(borderStyle && 'color' in borderStyle ? borderStyle.color : color)}`
 								strXml += '            </a:solidFill>'
 								strXml += '        </a:ln>'
 								strXml += '    </c:spPr>'
@@ -1048,11 +1049,11 @@ function makeChartType (chartType: CHART_NAME, data: IOptsChartData[], opts: ICh
 								strXml += '    <c:marker>'
 								strXml += '        <c:spPr>'
 								strXml += '            <a:solidFill>'
-								strXml += `                ${createColorElement(seriesColor)}`
+								strXml += `                ${createColorElement(color)}`
 								strXml += '            </a:solidFill>'
 								strXml += `            <a:ln w="${valToPts(borderStyle && 'pt' in borderStyle ? borderStyle.pt : 1)}" cap="flat">`
 								strXml += '                <a:solidFill>'
-								strXml += `                    ${createColorElement(borderStyle && 'color' in borderStyle ? borderStyle.color : seriesColor)}`
+								strXml += `                    ${createColorElement(borderStyle && 'color' in borderStyle ? borderStyle.color : color)}`
 								strXml += '                </a:solidFill>'
 								strXml += '                <a:prstDash val="solid"/>'
 								strXml += '                <a:round/>'
