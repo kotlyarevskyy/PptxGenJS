@@ -1185,6 +1185,10 @@ export interface OptsChartData {
 	 * Override `chartColors`
 	 */
 	// color?: string // TODO: WIP: (Pull #727)
+	/**
+	 * Per-series line dash style (line/scatter charts)
+	 */
+	lineDash?: 'solid' | 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'sysDash' | 'sysDot'
 }
 // Used internally, probably shouldn't be used by end users
 export interface IOptsChartData extends OptsChartData {
